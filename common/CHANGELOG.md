@@ -1,5 +1,97 @@
 # Changelog
 
+## [0.8.1](https://github.com/forksnd/accesskit/compare/accesskit-v0.18.0...accesskit-v0.8.1) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Drop the `is_hovered` property ([#479](https://github.com/forksnd/accesskit/issues/479))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Optimize serialization and make it compatible with more data formats ([#437](https://github.com/forksnd/accesskit/issues/437))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393))
+* Drop `SortDirection::Unsorted` ([#391](https://github.com/forksnd/accesskit/issues/391))
+* Rename `hierarchical_level` to `level` ([#390](https://github.com/forksnd/accesskit/issues/390))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296))
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289))
+* Drop next/previous focus properties ([#288](https://github.com/forksnd/accesskit/issues/288))
+* Drop `Tree::root_scroller` ([#279](https://github.com/forksnd/accesskit/issues/279))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205))
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add C bindings ([#230](https://github.com/forksnd/accesskit/issues/230)) ([7f7f4c7](https://github.com/forksnd/accesskit/commit/7f7f4c755890ab8210a5a8bf8e237ba6a51dd205))
+* Add role for terminals ([#282](https://github.com/forksnd/accesskit/issues/282)) ([ddbef37](https://github.com/forksnd/accesskit/commit/ddbef37158b57f56217317b480e40d58f83a9c24))
+* Add the `owns` relation ([#392](https://github.com/forksnd/accesskit/issues/392)) ([fd668dd](https://github.com/forksnd/accesskit/commit/fd668ddc4b64cb05ab3600972b3d3823a037f2d5))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291)) ([5313860](https://github.com/forksnd/accesskit/commit/531386023257150f49b5e4be942f359855fb7cb6))
+* Android adapter ([#500](https://github.com/forksnd/accesskit/issues/500)) ([7e65ac7](https://github.com/forksnd/accesskit/commit/7e65ac77d7e108ac5b9f3722f488a2fdf2e3b3e0))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+
+
+### Bug Fixes
+
+* Add explicit cargo features for `enumn` and `pyo3` ([#425](https://github.com/forksnd/accesskit/issues/425)) ([71ad45b](https://github.com/forksnd/accesskit/commit/71ad45be1651409ee6918cf835b656e6b5e0fe2d))
+* Add missing semicolons when not returning anything ([#303](https://github.com/forksnd/accesskit/issues/303)) ([38d4de1](https://github.com/forksnd/accesskit/commit/38d4de1442247e701047d75122a9638a2ed99b1f))
+* Bump pyo3; add `rename_all` attribute to enums ([#330](https://github.com/forksnd/accesskit/issues/330)) ([5a4c6f3](https://github.com/forksnd/accesskit/commit/5a4c6f399837d67b066451a8fb4d43d03c8acb8b))
+* Derive `PartialOrd` and `Ord` on `NodeId` ([#363](https://github.com/forksnd/accesskit/issues/363)) ([ce3bba1](https://github.com/forksnd/accesskit/commit/ce3bba1e043d650c406d8814b4f33e9104199c8b))
+* Document the `role_description` node property ([#331](https://github.com/forksnd/accesskit/issues/331)) ([936fa2c](https://github.com/forksnd/accesskit/commit/936fa2c23190c5d7cd4eb880612295785a009721))
+* Don't use a macro to generate Action debug helper function ([#459](https://github.com/forksnd/accesskit/issues/459)) ([ed1fb73](https://github.com/forksnd/accesskit/commit/ed1fb7370780c9dd15028cdfd13e2065642bf490))
+* Drop `Tree::root_scroller` ([#279](https://github.com/forksnd/accesskit/issues/279)) ([fc6c4e0](https://github.com/forksnd/accesskit/commit/fc6c4e0091d5b257a3869a468fca144a1453cebc))
+* Drop next/previous focus properties ([#288](https://github.com/forksnd/accesskit/issues/288)) ([d35c7c1](https://github.com/forksnd/accesskit/commit/d35c7c149a650dfedf1b031c0668adad585659fa))
+* Drop the `is_hovered` property ([#479](https://github.com/forksnd/accesskit/issues/479)) ([95dfdb6](https://github.com/forksnd/accesskit/commit/95dfdb6c88f7d705f6a7283cb8524168a9f542b2))
+* Eliminate duplicate definitions ([#461](https://github.com/forksnd/accesskit/issues/461)) ([59826d4](https://github.com/forksnd/accesskit/commit/59826d4500ddfe880181f7087f9fe83ff2209fc4))
+* Fix broken intra-doc-link. ([#262](https://github.com/forksnd/accesskit/issues/262)) ([63c1715](https://github.com/forksnd/accesskit/commit/63c17152d1eb8ae6ff19c2bc4a6756372bc490c2))
+* Fix some broken links in the documentation ([#484](https://github.com/forksnd/accesskit/issues/484)) ([0a51225](https://github.com/forksnd/accesskit/commit/0a5122561c6f6aca5cf802464220056d763040f8))
+* Improve debug representation of `Node` and `NodeBuilder` ([#452](https://github.com/forksnd/accesskit/issues/452)) ([119aa1d](https://github.com/forksnd/accesskit/commit/119aa1dca8fe734112ecbd59568c876b336ccb6c))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Make `NodeClassSet::new` const ([#368](https://github.com/forksnd/accesskit/issues/368)) ([11d2968](https://github.com/forksnd/accesskit/commit/11d2968464d50c3e3f55e9a872d0d454c19e7e51))
+* Set appropriate representations on all public types that will be exposed via FFI ([54e82f6](https://github.com/forksnd/accesskit/commit/54e82f673f5c7b46d9077fe5f946305800862bf0))
+* Support the enumn crate in all public enums ([#264](https://github.com/forksnd/accesskit/issues/264)) ([b9b3cd1](https://github.com/forksnd/accesskit/commit/b9b3cd18fccdd6526fb4f58c13eb91599452a3d6))
+* Support the pyo3 crate in all public enums ([#270](https://github.com/forksnd/accesskit/issues/270)) ([9b12d0c](https://github.com/forksnd/accesskit/commit/9b12d0c3d828d4c847510b611d891872c4666984))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Update pyo3 to 0.23 ([#512](https://github.com/forksnd/accesskit/issues/512)) ([93d3a27](https://github.com/forksnd/accesskit/commit/93d3a27ac4af60eef4a1faf26392a6f7ff69cf81))
+
+
+### Documentation
+
+* Fix outdated documentation for `TreeUpdate` ([#182](https://github.com/forksnd/accesskit/issues/182)) ([dd658c7](https://github.com/forksnd/accesskit/commit/dd658c70df55b2234a0346220362b0b9a40bb41d))
+
+
+### Code Refactoring
+
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289)) ([4fc9c55](https://github.com/forksnd/accesskit/commit/4fc9c55c91812472593923d93ff89d75ff305ee4))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393)) ([e34dad9](https://github.com/forksnd/accesskit/commit/e34dad94448a5321ece9def3f2e054aa5f62dd79))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278)) ([d360d20](https://github.com/forksnd/accesskit/commit/d360d20cf951e7643b81a5303006c9f7daa5bd56))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472)) ([ef3b003](https://github.com/forksnd/accesskit/commit/ef3b0038224459094f650368412650bc3b69526b))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389)) ([1b153ed](https://github.com/forksnd/accesskit/commit/1b153ed51f8421cdba2dc98beca2e8f5f8c781bc))
+* Drop `SortDirection::Unsorted` ([#391](https://github.com/forksnd/accesskit/issues/391)) ([b86f484](https://github.com/forksnd/accesskit/commit/b86f484b7e6645e63362896b744a71ec758f810d))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296)) ([4fc7846](https://github.com/forksnd/accesskit/commit/4fc7846d732d61fb45c023060ebab96801a0053e))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205)) ([4811152](https://github.com/forksnd/accesskit/commit/48111521439b76c1a8687418a4b20f9b705eac6d))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212)) ([5df52e5](https://github.com/forksnd/accesskit/commit/5df52e5545faddf6a51905409013c2f5be23981e))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Optimize serialization and make it compatible with more data formats ([#437](https://github.com/forksnd/accesskit/issues/437)) ([5a80d3a](https://github.com/forksnd/accesskit/commit/5a80d3ae46cfe85780d4900f4fa9f4feaba52053))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388)) ([6bc040b](https://github.com/forksnd/accesskit/commit/6bc040b7cf75cdbd6a019cc380d8dbce804b3c81))
+* Rename `hierarchical_level` to `level` ([#390](https://github.com/forksnd/accesskit/issues/390)) ([2d61e01](https://github.com/forksnd/accesskit/commit/2d61e01fffff1265b348c141715f6f9b6fe4081b))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475)) ([e0053a5](https://github.com/forksnd/accesskit/commit/e0053a5399929e8e0d4f07aa18de604ed8766ace))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476)) ([7d8910e](https://github.com/forksnd/accesskit/commit/7d8910e35f7bc0543724cc124941a3bd0304bcc0))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473)) ([29fa341](https://github.com/forksnd/accesskit/commit/29fa34125a811bd3a0f9da579a9f35c9da90bf29))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276)) ([3eadd48](https://github.com/forksnd/accesskit/commit/3eadd48ec47854faa94a94ebf910ec08f514642f))
+
 ## [0.18.0](https://github.com/AccessKit/accesskit/compare/accesskit-v0.17.1...accesskit-v0.18.0) (2025-03-06)
 
 
