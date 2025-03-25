@@ -38,6 +38,119 @@
     * accesskit bumped from 0.16.2 to 0.16.3
     * accesskit_consumer bumped from 0.24.2 to 0.24.3
 
+## [0.27.0](https://github.com/forksnd/accesskit/compare/accesskit_windows-v0.26.0...accesskit_windows-v0.27.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Panic if the window is visible when the adapter is created, for adapters where this is a problem ([#529](https://github.com/forksnd/accesskit/issues/529))
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Update windows to 0.58 on accesskit_windows ([#453](https://github.com/forksnd/accesskit/issues/453))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Update winit to 0.30 ([#397](https://github.com/forksnd/accesskit/issues/397))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296))
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205))
+* Update winit to 0.28 ([#207](https://github.com/forksnd/accesskit/issues/207))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179))
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add role for terminals ([#282](https://github.com/forksnd/accesskit/issues/282)) ([ddbef37](https://github.com/forksnd/accesskit/commit/ddbef37158b57f56217317b480e40d58f83a9c24))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291)) ([5313860](https://github.com/forksnd/accesskit/commit/531386023257150f49b5e4be942f359855fb7cb6))
+* Expose the `is_required` property ([#497](https://github.com/forksnd/accesskit/issues/497)) ([46ed99b](https://github.com/forksnd/accesskit/commit/46ed99bb958ddb32cbf1bee2fcfb7b328bcbe0ab))
+* Expose the `orientation` property ([#421](https://github.com/forksnd/accesskit/issues/421)) ([590aada](https://github.com/forksnd/accesskit/commit/590aada070dc812f9b8f171fb9e43ac984fad2a1))
+* Expose the `placeholder` property ([#417](https://github.com/forksnd/accesskit/issues/417)) ([8f4a0a1](https://github.com/forksnd/accesskit/commit/8f4a0a1c10f83fcc8580a37d8013fec2d110865b))
+* Expose the class name property ([#385](https://github.com/forksnd/accesskit/issues/385)) ([53dcf2a](https://github.com/forksnd/accesskit/commit/53dcf2ae47546273590c46a9b31b708aa1409837))
+* Implement the `description` property ([#382](https://github.com/forksnd/accesskit/issues/382)) ([d49f406](https://github.com/forksnd/accesskit/commit/d49f40660b5dc23ed074cd72a91e511b130756ae))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+* Support custom role descriptions ([#316](https://github.com/forksnd/accesskit/issues/316)) ([c8d1a56](https://github.com/forksnd/accesskit/commit/c8d1a5638fa6c33adfa059815c04f7e043c56026))
+
+
+### Bug Fixes
+
+* Add list box support to the platform adapters ([6c622cf](https://github.com/forksnd/accesskit/commit/6c622cff4c0c989d9a5f16b775adff9cdacf534c))
+* Avoid `unnecessary_literal_unwrap` clippy lint ([#346](https://github.com/forksnd/accesskit/issues/346)) ([59a6eae](https://github.com/forksnd/accesskit/commit/59a6eae40ba35069b90d4cc0b765d838f8477c66))
+* Bump windows-rs dependency to 0.52 ([#359](https://github.com/forksnd/accesskit/issues/359)) ([69d74f6](https://github.com/forksnd/accesskit/commit/69d74f6947922b76d4aee683eb53d8fbdd2259f2))
+* Correct broken UIA method implementation that was incompatible with Windows 11 ATs ([#193](https://github.com/forksnd/accesskit/issues/193)) ([3c527c7](https://github.com/forksnd/accesskit/commit/3c527c76cb4139402d2b5550d2eb1ad12e07ebe5))
+* Derive `Debug` for adapters ([#513](https://github.com/forksnd/accesskit/issues/513)) ([753d904](https://github.com/forksnd/accesskit/commit/753d90473cf57682568c7a17c82474c8e5d00b25))
+* Eliminate the dependency on `paste` ([#528](https://github.com/forksnd/accesskit/issues/528)) ([4aef05d](https://github.com/forksnd/accesskit/commit/4aef05d0b34b434c0f0ce2e7583adef3e73bda4d))
+* Expose password input fields on Windows ([#516](https://github.com/forksnd/accesskit/issues/516)) ([19514da](https://github.com/forksnd/accesskit/commit/19514dabc40bcfc01bee1b1efa77355ec5b0822b))
+* Fix platform adapters to support copy-on-write tree snapshots again ([#411](https://github.com/forksnd/accesskit/issues/411)) ([d3a130a](https://github.com/forksnd/accesskit/commit/d3a130a5ec8ae1d9edf0bf85a44f35f0e365242c))
+* Fix some clippy warnings ([#509](https://github.com/forksnd/accesskit/issues/509)) ([579b9c1](https://github.com/forksnd/accesskit/commit/579b9c12dd8abc44ecab41fa3c326a1d8999871d))
+* Fix Windows 32-bit build errors ([#223](https://github.com/forksnd/accesskit/issues/223)) ([41f28b6](https://github.com/forksnd/accesskit/commit/41f28b670ac457b2d067bbc4ba40aa0fc8842e4d))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234)) ([773389b](https://github.com/forksnd/accesskit/commit/773389bff857fa18edf15de426e029251fc34591))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Make the test focus event handler thread-safe again ([#306](https://github.com/forksnd/accesskit/issues/306)) ([bb479c6](https://github.com/forksnd/accesskit/commit/bb479c69bddff77a1102549a7ff6ea5c7155d90d))
+* Make the transition from placeholder to real tree more robust ([#405](https://github.com/forksnd/accesskit/issues/405)) ([928e11d](https://github.com/forksnd/accesskit/commit/928e11d00e7c60b3cafcc0ac623f6377b36f7ea7))
+* Make the Windows subclassing test more robust ([#308](https://github.com/forksnd/accesskit/issues/308)) ([0078f79](https://github.com/forksnd/accesskit/commit/0078f7997f11a3bb1f3c33dc7a91f427b1a60db8))
+* More reliable handling of the edge case for wrapped lines ([#192](https://github.com/forksnd/accesskit/issues/192)) ([c626d2c](https://github.com/forksnd/accesskit/commit/c626d2c3028085b076ada7dd31242cf3ca3c0f08))
+* Optimize dynamic string building ([#491](https://github.com/forksnd/accesskit/issues/491)) ([a86901d](https://github.com/forksnd/accesskit/commit/a86901ddea5d5ba72ab237e98b53d6adcc6087bb))
+* Optimize use of hash tables in platform adapters ([#485](https://github.com/forksnd/accesskit/issues/485)) ([f4f0bfb](https://github.com/forksnd/accesskit/commit/f4f0bfbf21b8e22e80ab07deb432f9e7e16469ab))
+* Panic if the window is visible when the adapter is created, for adapters where this is a problem ([#529](https://github.com/forksnd/accesskit/issues/529)) ([c43c37b](https://github.com/forksnd/accesskit/commit/c43c37ba2502656fcae4fd726b9b7db0bb520f31))
+* Provide fallback property implementations for the window root ([#194](https://github.com/forksnd/accesskit/issues/194)) ([f3d30b9](https://github.com/forksnd/accesskit/commit/f3d30b9ba2f66e08fb7f78c304ab8a9e83e1aeca))
+* Remove unnecessary explicit lifetimes ([#488](https://github.com/forksnd/accesskit/issues/488)) ([d2bcd6d](https://github.com/forksnd/accesskit/commit/d2bcd6d3048d23df4e132bee6171eb247b2dc2c8))
+* Support text fields without a value property ([#274](https://github.com/forksnd/accesskit/issues/274)) ([5ae557b](https://github.com/forksnd/accesskit/commit/5ae557b40d395b4a9966a90a2d80e7d97ad50bf9))
+* Tell docs.rs to only build accesskit_windows on Windows ([#483](https://github.com/forksnd/accesskit/issues/483)) ([1fead29](https://github.com/forksnd/accesskit/commit/1fead296ed012f83afb482021051ccc1d4946167))
+* Update `windows` to `0.54` ([#373](https://github.com/forksnd/accesskit/issues/373)) ([50f112f](https://github.com/forksnd/accesskit/commit/50f112f0085a03f0180f86915d2ac4e5845f6b63))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Update windows crate to v0.48 ([#257](https://github.com/forksnd/accesskit/issues/257)) ([cc703ed](https://github.com/forksnd/accesskit/commit/cc703ed33d535aa1803e423a53beff9354b5b0df))
+* Update windows to 0.58 on accesskit_windows ([#453](https://github.com/forksnd/accesskit/issues/453)) ([cda35e7](https://github.com/forksnd/accesskit/commit/cda35e77a78f72386c2bfd88e9fd29000106f7e6))
+* Update windows-rs to 0.44 ([#220](https://github.com/forksnd/accesskit/issues/220)) ([a6b0a12](https://github.com/forksnd/accesskit/commit/a6b0a124e7511e37760d769b517fd5fc9050160b))
+* Update winit to 0.30 ([#397](https://github.com/forksnd/accesskit/issues/397)) ([de93be3](https://github.com/forksnd/accesskit/commit/de93be387c03a438fbf598670207e578686e6bcf))
+* Use common filters across platform adapters ([#287](https://github.com/forksnd/accesskit/issues/287)) ([09c1204](https://github.com/forksnd/accesskit/commit/09c12045ff4ccdb22f0cf643077a27465013572d))
+
+
+### Miscellaneous Chores
+
+* Update winit to 0.28 ([#207](https://github.com/forksnd/accesskit/issues/207)) ([3ff0cf5](https://github.com/forksnd/accesskit/commit/3ff0cf59f982af504499142a3804f7aeeb4defe0))
+
+
+### Code Refactoring
+
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289)) ([4fc9c55](https://github.com/forksnd/accesskit/commit/4fc9c55c91812472593923d93ff89d75ff305ee4))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393)) ([e34dad9](https://github.com/forksnd/accesskit/commit/e34dad94448a5321ece9def3f2e054aa5f62dd79))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278)) ([d360d20](https://github.com/forksnd/accesskit/commit/d360d20cf951e7643b81a5303006c9f7daa5bd56))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472)) ([ef3b003](https://github.com/forksnd/accesskit/commit/ef3b0038224459094f650368412650bc3b69526b))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389)) ([1b153ed](https://github.com/forksnd/accesskit/commit/1b153ed51f8421cdba2dc98beca2e8f5f8c781bc))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296)) ([4fc7846](https://github.com/forksnd/accesskit/commit/4fc7846d732d61fb45c023060ebab96801a0053e))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205)) ([4811152](https://github.com/forksnd/accesskit/commit/48111521439b76c1a8687418a4b20f9b705eac6d))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179)) ([f35c941](https://github.com/forksnd/accesskit/commit/f35c941f395f3162db376a69cfaaaf770d376267))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212)) ([5df52e5](https://github.com/forksnd/accesskit/commit/5df52e5545faddf6a51905409013c2f5be23981e))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493)) ([484fd7c](https://github.com/forksnd/accesskit/commit/484fd7cbfb778222369d3f57d31dd998f6fa80d8))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388)) ([6bc040b](https://github.com/forksnd/accesskit/commit/6bc040b7cf75cdbd6a019cc380d8dbce804b3c81))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475)) ([e0053a5](https://github.com/forksnd/accesskit/commit/e0053a5399929e8e0d4f07aa18de604ed8766ace))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476)) ([7d8910e](https://github.com/forksnd/accesskit/commit/7d8910e35f7bc0543724cc124941a3bd0304bcc0))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473)) ([29fa341](https://github.com/forksnd/accesskit/commit/29fa34125a811bd3a0f9da579a9f35c9da90bf29))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276)) ([3eadd48](https://github.com/forksnd/accesskit/commit/3eadd48ec47854faa94a94ebf910ec08f514642f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * accesskit bumped from 0.18.0 to 0.8.1
+    * accesskit_consumer bumped from 0.27.0 to 0.28.0
+
 ## [0.26.0](https://github.com/AccessKit/accesskit/compare/accesskit_windows-v0.25.0...accesskit_windows-v0.26.0) (2025-03-17)
 
 
