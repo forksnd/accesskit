@@ -24,6 +24,77 @@
     * accesskit bumped from 0.17.0 to 0.17.1
     * accesskit_consumer bumped from 0.25.0 to 0.26.0
 
+## [0.12.0](https://github.com/forksnd/accesskit/compare/accesskit_atspi_common-v0.11.0...accesskit_atspi_common-v0.12.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add basic text support on Unix ([#362](https://github.com/forksnd/accesskit/issues/362)) ([52540f8](https://github.com/forksnd/accesskit/commit/52540f82cf9fc148358351ed486bab3e7e91f1d6))
+* Add list box support to the `consumer` and `atspi-common` crates ([d6dca15](https://github.com/forksnd/accesskit/commit/d6dca15d5c298c797ab7a702f0186043eac33c5c))
+* Expose root node ID in `accesskit_atspi_common::Adapter` ([#370](https://github.com/forksnd/accesskit/issues/370)) ([a43b497](https://github.com/forksnd/accesskit/commit/a43b497afbbbcf90e9d15259635a329164d6a791))
+* Expose the `is_required` property ([#497](https://github.com/forksnd/accesskit/issues/497)) ([46ed99b](https://github.com/forksnd/accesskit/commit/46ed99bb958ddb32cbf1bee2fcfb7b328bcbe0ab))
+* Expose the `orientation` property ([#421](https://github.com/forksnd/accesskit/issues/421)) ([590aada](https://github.com/forksnd/accesskit/commit/590aada070dc812f9b8f171fb9e43ac984fad2a1))
+* Expose the `placeholder` property ([#417](https://github.com/forksnd/accesskit/issues/417)) ([8f4a0a1](https://github.com/forksnd/accesskit/commit/8f4a0a1c10f83fcc8580a37d8013fec2d110865b))
+* Factor out core AT-SPI translation layer ([#352](https://github.com/forksnd/accesskit/issues/352)) ([8c0ab58](https://github.com/forksnd/accesskit/commit/8c0ab58d441c0d4484e0bc31a554bdfb3f088cd6))
+* Feature-gate the `accesskit_atspi_common::simplified` module ([#430](https://github.com/forksnd/accesskit/issues/430)) ([50341f1](https://github.com/forksnd/accesskit/commit/50341f10cf32ef16c904d54725f717a585d21043))
+* Implement the `description` property ([#382](https://github.com/forksnd/accesskit/issues/382)) ([d49f406](https://github.com/forksnd/accesskit/commit/d49f40660b5dc23ed074cd72a91e511b130756ae))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+
+
+### Bug Fixes
+
+* Add missing README ([#357](https://github.com/forksnd/accesskit/issues/357)) ([e8cf48e](https://github.com/forksnd/accesskit/commit/e8cf48e21be0146768b2d14289164d192823fd1f))
+* Avoid unnecessary repeated checks for text changes ([#432](https://github.com/forksnd/accesskit/issues/432)) ([0e89671](https://github.com/forksnd/accesskit/commit/0e89671fc0cf831d2c86a2cacf0195e247560753))
+* Correctly handle recursive filtering ([#438](https://github.com/forksnd/accesskit/issues/438)) ([72f9b42](https://github.com/forksnd/accesskit/commit/72f9b424a5c6e7914df8bf31eeb2fc61be35f47b))
+* Derive `Debug` for adapters ([#513](https://github.com/forksnd/accesskit/issues/513)) ([753d904](https://github.com/forksnd/accesskit/commit/753d90473cf57682568c7a17c82474c8e5d00b25))
+* Don't fire events for filtered children on Unix ([#414](https://github.com/forksnd/accesskit/issues/414)) ([2bcb1b6](https://github.com/forksnd/accesskit/commit/2bcb1b63e88b801b194a4db50059fa063efbee64))
+* Fix a compilation error in atspi-common `Event::new` ([#537](https://github.com/forksnd/accesskit/issues/537)) ([23b4d8d](https://github.com/forksnd/accesskit/commit/23b4d8d49fed378899855a40e63aff10e829f6e8))
+* Fix a logic error in suffix calculation for text changes ([#423](https://github.com/forksnd/accesskit/issues/423)) ([1121723](https://github.com/forksnd/accesskit/commit/1121723983cb2fa64b5053626ec64afb851ff6c4))
+* Fix platform adapters to support copy-on-write tree snapshots again ([#411](https://github.com/forksnd/accesskit/issues/411)) ([d3a130a](https://github.com/forksnd/accesskit/commit/d3a130a5ec8ae1d9edf0bf85a44f35f0e365242c))
+* Improve how coordinates are computed on Unix ([#420](https://github.com/forksnd/accesskit/issues/420)) ([fc5125e](https://github.com/forksnd/accesskit/commit/fc5125e27f8f4f655e1de5049d0d53536284d9a0))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Remove unnecessary explicit lifetimes ([#488](https://github.com/forksnd/accesskit/issues/488)) ([d2bcd6d](https://github.com/forksnd/accesskit/commit/d2bcd6d3048d23df4e132bee6171eb247b2dc2c8))
+* Return to handling focus events directly, after generic node changes ([#409](https://github.com/forksnd/accesskit/issues/409)) ([cd2e35e](https://github.com/forksnd/accesskit/commit/cd2e35e43817405199ae6acd64ef90aee445be0b))
+* Smarter calculation of AT-SPI extents for the window ([#435](https://github.com/forksnd/accesskit/issues/435)) ([7f40fbc](https://github.com/forksnd/accesskit/commit/7f40fbc811f863e99088cd7eb725994d0f79263f))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Update to zbus v4 ([#456](https://github.com/forksnd/accesskit/issues/456)) ([95db8f1](https://github.com/forksnd/accesskit/commit/95db8f1c5f7f56598eab6910a990ccbf9d864dda))
+* Update zbus to 5.0 ([#519](https://github.com/forksnd/accesskit/issues/519)) ([4c10b80](https://github.com/forksnd/accesskit/commit/4c10b801b6924c7010b83f4eb44c8c350c860cf6))
+
+
+### Code Refactoring
+
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393)) ([e34dad9](https://github.com/forksnd/accesskit/commit/e34dad94448a5321ece9def3f2e054aa5f62dd79))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472)) ([ef3b003](https://github.com/forksnd/accesskit/commit/ef3b0038224459094f650368412650bc3b69526b))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493)) ([484fd7c](https://github.com/forksnd/accesskit/commit/484fd7cbfb778222369d3f57d31dd998f6fa80d8))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388)) ([6bc040b](https://github.com/forksnd/accesskit/commit/6bc040b7cf75cdbd6a019cc380d8dbce804b3c81))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475)) ([e0053a5](https://github.com/forksnd/accesskit/commit/e0053a5399929e8e0d4f07aa18de604ed8766ace))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473)) ([29fa341](https://github.com/forksnd/accesskit/commit/29fa34125a811bd3a0f9da579a9f35c9da90bf29))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * accesskit bumped from 0.18.0 to 0.8.1
+    * accesskit_consumer bumped from 0.27.0 to 0.28.0
+
 ## [0.11.0](https://github.com/AccessKit/accesskit/compare/accesskit_atspi_common-v0.10.1...accesskit_atspi_common-v0.11.0) (2025-03-06)
 
 

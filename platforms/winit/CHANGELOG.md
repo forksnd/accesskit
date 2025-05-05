@@ -147,6 +147,112 @@
     * accesskit_macos bumped from 0.18.0 to 0.18.1
     * accesskit_unix bumped from 0.13.0 to 0.13.1
 
+## [0.27.0](https://github.com/forksnd/accesskit/compare/accesskit_winit-v0.26.0...accesskit_winit-v0.27.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Panic if the window is visible when the adapter is created, for adapters where this is a problem ([#529](https://github.com/forksnd/accesskit/issues/529))
+* Make accesskit_android an optional dependency of accesskit_winit ([#524](https://github.com/forksnd/accesskit/issues/524))
+* Add event loop parameter to winit adapter constructors ([#517](https://github.com/forksnd/accesskit/issues/517))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Update winit to 0.30 ([#397](https://github.com/forksnd/accesskit/issues/397))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+* Lazily activate Unix adapters ([#324](https://github.com/forksnd/accesskit/issues/324))
+* Remove `accesskit_winit::Adapter::update` ([#325](https://github.com/forksnd/accesskit/issues/325))
+* Force a semver break for the winit rwh feature additions ([#322](https://github.com/forksnd/accesskit/issues/322))
+* Rename `accesskit_winit::Adapter::on_event` to `process_event` ([#307](https://github.com/forksnd/accesskit/issues/307))
+* Bump winit to 0.29 ([#256](https://github.com/forksnd/accesskit/issues/256))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205))
+* Update winit to 0.28 ([#207](https://github.com/forksnd/accesskit/issues/207))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179))
+
+### deps
+
+* Bump winit to 0.29 ([#256](https://github.com/forksnd/accesskit/issues/256)) ([4eb21ff](https://github.com/forksnd/accesskit/commit/4eb21ff64256fcf0a16ab831554b06b80de9b36e))
+
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add features for async runtimes on Unix ([#248](https://github.com/forksnd/accesskit/issues/248)) ([b56b4ea](https://github.com/forksnd/accesskit/commit/b56b4ea7c967ee5a1dae21a2fa0dcd385346031e))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291)) ([5313860](https://github.com/forksnd/accesskit/commit/531386023257150f49b5e4be942f359855fb7cb6))
+* Android adapter ([#500](https://github.com/forksnd/accesskit/issues/500)) ([7e65ac7](https://github.com/forksnd/accesskit/commit/7e65ac77d7e108ac5b9f3722f488a2fdf2e3b3e0))
+* Basic Unix platform adapter ([#198](https://github.com/forksnd/accesskit/issues/198)) ([1cea32e](https://github.com/forksnd/accesskit/commit/1cea32e44ee743b778ac941ceff9087ae745cb37))
+* Feature-gate the Unix adapter in accesskit_winit ([#214](https://github.com/forksnd/accesskit/issues/214)) ([be95807](https://github.com/forksnd/accesskit/commit/be95807dda64f2a49b4d20cc9084b14a7aa2844e))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+
+
+### Bug Fixes
+
+* Account for window decorations when `accesskit_winit::Adapter::process_event` receives a resizing event on Unix ([#312](https://github.com/forksnd/accesskit/issues/312)) ([e2b264c](https://github.com/forksnd/accesskit/commit/e2b264c2e5b0fb699576f2ece905509c38ffc9be))
+* Add a `rwh_05` feature flag to `accesskit_winit` ([#319](https://github.com/forksnd/accesskit/issues/319)) ([f4d279c](https://github.com/forksnd/accesskit/commit/f4d279c5ece16df2925c0e31dc82eaf192c40cd0))
+* Add missing semicolons when not returning anything ([#303](https://github.com/forksnd/accesskit/issues/303)) ([38d4de1](https://github.com/forksnd/accesskit/commit/38d4de1442247e701047d75122a9638a2ed99b1f))
+* Don't force winit's X11 and Wayland features to be enabled ([#209](https://github.com/forksnd/accesskit/issues/209)) ([a3ed357](https://github.com/forksnd/accesskit/commit/a3ed35754ad8f69a8ed54adacc30b6d57c19329a))
+* Fix doc build for accesskit_winit ([#281](https://github.com/forksnd/accesskit/issues/281)) ([e3b38b8](https://github.com/forksnd/accesskit/commit/e3b38b8164d0c5442a5a1904165e2b05847376c2))
+* Force a semver break for the winit rwh feature additions ([#322](https://github.com/forksnd/accesskit/issues/322)) ([61acdb0](https://github.com/forksnd/accesskit/commit/61acdb0ea083263c88a00ad4db637b25863852c0))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234)) ([773389b](https://github.com/forksnd/accesskit/commit/773389bff857fa18edf15de426e029251fc34591))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Lazily activate Unix adapters ([#324](https://github.com/forksnd/accesskit/issues/324)) ([54ed036](https://github.com/forksnd/accesskit/commit/54ed036c99d87428a8eb5bb03fd77e9e31562d4c))
+* Make accesskit_android an optional dependency of accesskit_winit ([#524](https://github.com/forksnd/accesskit/issues/524)) ([bb17d44](https://github.com/forksnd/accesskit/commit/bb17d449b601eaffad1c7201ec5bf8de241bb8f8))
+* Panic if the window is visible when the adapter is created, for adapters where this is a problem ([#529](https://github.com/forksnd/accesskit/issues/529)) ([c43c37b](https://github.com/forksnd/accesskit/commit/c43c37ba2502656fcae4fd726b9b7db0bb520f31))
+* Reduce the winit version requirement to match egui ([#170](https://github.com/forksnd/accesskit/issues/170)) ([1d27482](https://github.com/forksnd/accesskit/commit/1d27482221140c1f3b3e3eaf93e7feaf8105611d))
+* Remove `accesskit_winit::Adapter::update` ([#325](https://github.com/forksnd/accesskit/issues/325)) ([f121bff](https://github.com/forksnd/accesskit/commit/f121bffe9e651fd2ac6deb882f57e1c9b613b7eb))
+* Run our own async executor on Unix ([#337](https://github.com/forksnd/accesskit/issues/337)) ([8f937ba](https://github.com/forksnd/accesskit/commit/8f937baaa510dd96da196501822b82f75f05b595))
+* Show an error at compile-time if no raw-window-handle feature is enabled for the winit adapter ([#339](https://github.com/forksnd/accesskit/issues/339)) ([a24f5fd](https://github.com/forksnd/accesskit/commit/a24f5fd443a683a6194b54244052ff3e1cc05de6))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Update winit to 0.30 ([#397](https://github.com/forksnd/accesskit/issues/397)) ([de93be3](https://github.com/forksnd/accesskit/commit/de93be387c03a438fbf598670207e578686e6bcf))
+* Update winit to 0.30.9 ([#511](https://github.com/forksnd/accesskit/issues/511)) ([0be21e6](https://github.com/forksnd/accesskit/commit/0be21e6a2979af483b573b1c9b07c677286b871d))
+* Use raw-window-handle 0.6 ([#310](https://github.com/forksnd/accesskit/issues/310)) ([3fa69ab](https://github.com/forksnd/accesskit/commit/3fa69ab4d9216b51b651d3cf2a9c8217a77069f4))
+* Use the new HWND type on accesskit_winit ([#453](https://github.com/forksnd/accesskit/issues/453)) ([68a2462](https://github.com/forksnd/accesskit/commit/68a24629381f0b18f6ed1ee008fe72ce9330092e))
+
+
+### Miscellaneous Chores
+
+* Update winit to 0.28 ([#207](https://github.com/forksnd/accesskit/issues/207)) ([3ff0cf5](https://github.com/forksnd/accesskit/commit/3ff0cf59f982af504499142a3804f7aeeb4defe0))
+
+
+### Code Refactoring
+
+* Add event loop parameter to winit adapter constructors ([#517](https://github.com/forksnd/accesskit/issues/517)) ([0d15f24](https://github.com/forksnd/accesskit/commit/0d15f246a301a68af4424f7602c2f3be25da9327))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278)) ([d360d20](https://github.com/forksnd/accesskit/commit/d360d20cf951e7643b81a5303006c9f7daa5bd56))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472)) ([ef3b003](https://github.com/forksnd/accesskit/commit/ef3b0038224459094f650368412650bc3b69526b))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389)) ([1b153ed](https://github.com/forksnd/accesskit/commit/1b153ed51f8421cdba2dc98beca2e8f5f8c781bc))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296)) ([4fc7846](https://github.com/forksnd/accesskit/commit/4fc7846d732d61fb45c023060ebab96801a0053e))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205)) ([4811152](https://github.com/forksnd/accesskit/commit/48111521439b76c1a8687418a4b20f9b705eac6d))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179)) ([f35c941](https://github.com/forksnd/accesskit/commit/f35c941f395f3162db376a69cfaaaf770d376267))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212)) ([5df52e5](https://github.com/forksnd/accesskit/commit/5df52e5545faddf6a51905409013c2f5be23981e))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Rename `accesskit_winit::Adapter::on_event` to `process_event` ([#307](https://github.com/forksnd/accesskit/issues/307)) ([6fbebde](https://github.com/forksnd/accesskit/commit/6fbebdeb9d1e96b1776ed1faf7ad21d9cc0a68df))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475)) ([e0053a5](https://github.com/forksnd/accesskit/commit/e0053a5399929e8e0d4f07aa18de604ed8766ace))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476)) ([7d8910e](https://github.com/forksnd/accesskit/commit/7d8910e35f7bc0543724cc124941a3bd0304bcc0))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276)) ([3eadd48](https://github.com/forksnd/accesskit/commit/3eadd48ec47854faa94a94ebf910ec08f514642f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * accesskit bumped from 0.18.0 to 0.8.1
+    * accesskit_windows bumped from 0.26.0 to 0.27.0
+    * accesskit_macos bumped from 0.19.0 to 0.20.0
+    * accesskit_unix bumped from 0.14.0 to 0.15.0
+    * accesskit_android bumped from 0.1.1 to 0.2.0
+
 ## [0.26.0](https://github.com/AccessKit/accesskit/compare/accesskit_winit-v0.25.0...accesskit_winit-v0.26.0) (2025-03-17)
 
 

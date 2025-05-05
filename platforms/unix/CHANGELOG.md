@@ -68,6 +68,85 @@
     * accesskit bumped from 0.17.0 to 0.17.1
     * accesskit_atspi_common bumped from 0.10.0 to 0.10.1
 
+## [0.15.0](https://github.com/forksnd/accesskit/compare/accesskit_unix-v0.14.0...accesskit_unix-v0.15.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Force a semver-breaking release ([#398](https://github.com/forksnd/accesskit/issues/398))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+* Lazily activate Unix adapters ([#324](https://github.com/forksnd/accesskit/issues/324))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296))
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205))
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add basic text support on Unix ([#362](https://github.com/forksnd/accesskit/issues/362)) ([52540f8](https://github.com/forksnd/accesskit/commit/52540f82cf9fc148358351ed486bab3e7e91f1d6))
+* Add features for async runtimes on Unix ([#248](https://github.com/forksnd/accesskit/issues/248)) ([b56b4ea](https://github.com/forksnd/accesskit/commit/b56b4ea7c967ee5a1dae21a2fa0dcd385346031e))
+* Add role for terminals ([#282](https://github.com/forksnd/accesskit/issues/282)) ([ddbef37](https://github.com/forksnd/accesskit/commit/ddbef37158b57f56217317b480e40d58f83a9c24))
+* Allow providing app_name, toolkit_name and toolkit_version in Tree, remove parameters from unix adapter constructor ([#291](https://github.com/forksnd/accesskit/issues/291)) ([5313860](https://github.com/forksnd/accesskit/commit/531386023257150f49b5e4be942f359855fb7cb6))
+* Basic Unix platform adapter ([#198](https://github.com/forksnd/accesskit/issues/198)) ([1cea32e](https://github.com/forksnd/accesskit/commit/1cea32e44ee743b778ac941ceff9087ae745cb37))
+* Expose the `placeholder` property ([#417](https://github.com/forksnd/accesskit/issues/417)) ([8f4a0a1](https://github.com/forksnd/accesskit/commit/8f4a0a1c10f83fcc8580a37d8013fec2d110865b))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+* Support custom role descriptions ([#316](https://github.com/forksnd/accesskit/issues/316)) ([c8d1a56](https://github.com/forksnd/accesskit/commit/c8d1a5638fa6c33adfa059815c04f7e043c56026))
+* Support live regions on Unix ([#299](https://github.com/forksnd/accesskit/issues/299)) ([8d52a5f](https://github.com/forksnd/accesskit/commit/8d52a5fc4271a3b5edcc602b23fd7b920446eab0))
+* Support multiple top-level windows on Unix ([#292](https://github.com/forksnd/accesskit/issues/292)) ([43ecf4b](https://github.com/forksnd/accesskit/commit/43ecf4b3ab96d9e8f7d2c2222c7e664c4f4f4abf))
+
+
+### Bug Fixes
+
+* Add list box support to the platform adapters ([6c622cf](https://github.com/forksnd/accesskit/commit/6c622cff4c0c989d9a5f16b775adff9cdacf534c))
+* Bump async-channel dependency to `2.1.1` ([#321](https://github.com/forksnd/accesskit/issues/321)) ([99120b8](https://github.com/forksnd/accesskit/commit/99120b828d65306ab71d41f71979dc67e8b0bf6b))
+* Derive `Debug` for adapters ([#513](https://github.com/forksnd/accesskit/issues/513)) ([753d904](https://github.com/forksnd/accesskit/commit/753d90473cf57682568c7a17c82474c8e5d00b25))
+* Don't emit focus event twice on Unix ([#354](https://github.com/forksnd/accesskit/issues/354)) ([b39216c](https://github.com/forksnd/accesskit/commit/b39216cb31df692fef377f9b3c3c718fd225cc3c))
+* Don't enable the `zbus/tokio` feature on Unix ([#521](https://github.com/forksnd/accesskit/issues/521)) ([9dfad97](https://github.com/forksnd/accesskit/commit/9dfad9796f71563a78bc6a7d5f01b111d80e63e6))
+* Don't require tokio rt-multi-thread feature ([#290](https://github.com/forksnd/accesskit/issues/290)) ([cf61e47](https://github.com/forksnd/accesskit/commit/cf61e477adff26b032fa0b24502c0ae0a96c1987))
+* Fix some clippy warnings ([#509](https://github.com/forksnd/accesskit/issues/509)) ([579b9c1](https://github.com/forksnd/accesskit/commit/579b9c12dd8abc44ecab41fa3c326a1d8999871d))
+* Force a semver-breaking release ([#398](https://github.com/forksnd/accesskit/issues/398)) ([87b8b92](https://github.com/forksnd/accesskit/commit/87b8b92b74a102c7cae48e013d2c2ae1cc2f9598))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234)) ([773389b](https://github.com/forksnd/accesskit/commit/773389bff857fa18edf15de426e029251fc34591))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Lazily activate Unix adapters ([#324](https://github.com/forksnd/accesskit/issues/324)) ([54ed036](https://github.com/forksnd/accesskit/commit/54ed036c99d87428a8eb5bb03fd77e9e31562d4c))
+* Make full use of tokio ecosystem if the tokio feature is enabled on Unix ([#336](https://github.com/forksnd/accesskit/issues/336)) ([c034802](https://github.com/forksnd/accesskit/commit/c0348024665a615a30fd8fe2f02e8c93cf9c6332))
+* Return a null object for AT-SPI application's parent ([#454](https://github.com/forksnd/accesskit/issues/454)) ([8a84abf](https://github.com/forksnd/accesskit/commit/8a84abf81eaf22dd3672813ca36f1a422b5c0f1e))
+* Run our own async executor on Unix ([#337](https://github.com/forksnd/accesskit/issues/337)) ([8f937ba](https://github.com/forksnd/accesskit/commit/8f937baaa510dd96da196501822b82f75f05b595))
+* Update atspi dependency ([#217](https://github.com/forksnd/accesskit/issues/217)) ([93f2dc9](https://github.com/forksnd/accesskit/commit/93f2dc9bf0a57a8b7592c3a4cf4aa3885a3356f2))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Update to zbus v4 ([#456](https://github.com/forksnd/accesskit/issues/456)) ([95db8f1](https://github.com/forksnd/accesskit/commit/95db8f1c5f7f56598eab6910a990ccbf9d864dda))
+* Update zbus to 5.0 ([#519](https://github.com/forksnd/accesskit/issues/519)) ([4c10b80](https://github.com/forksnd/accesskit/commit/4c10b801b6924c7010b83f4eb44c8c350c860cf6))
+* Use common filters across platform adapters ([#287](https://github.com/forksnd/accesskit/issues/287)) ([09c1204](https://github.com/forksnd/accesskit/commit/09c12045ff4ccdb22f0cf643077a27465013572d))
+* Use the new accesskit_atspi_common crate in the Unix adapter ([#356](https://github.com/forksnd/accesskit/issues/356)) ([b2a468c](https://github.com/forksnd/accesskit/commit/b2a468ccb91ee4e6d3435e73eb00c65cbe75060a))
+
+
+### Code Refactoring
+
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289)) ([4fc9c55](https://github.com/forksnd/accesskit/commit/4fc9c55c91812472593923d93ff89d75ff305ee4))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278)) ([d360d20](https://github.com/forksnd/accesskit/commit/d360d20cf951e7643b81a5303006c9f7daa5bd56))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296)) ([4fc7846](https://github.com/forksnd/accesskit/commit/4fc7846d732d61fb45c023060ebab96801a0053e))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205)) ([4811152](https://github.com/forksnd/accesskit/commit/48111521439b76c1a8687418a4b20f9b705eac6d))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212)) ([5df52e5](https://github.com/forksnd/accesskit/commit/5df52e5545faddf6a51905409013c2f5be23981e))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276)) ([3eadd48](https://github.com/forksnd/accesskit/commit/3eadd48ec47854faa94a94ebf910ec08f514642f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * accesskit bumped from 0.18.0 to 0.8.1
+    * accesskit_atspi_common bumped from 0.11.0 to 0.12.0
+
 ## [0.14.0](https://github.com/AccessKit/accesskit/compare/accesskit_unix-v0.13.1...accesskit_unix-v0.14.0) (2025-03-06)
 
 

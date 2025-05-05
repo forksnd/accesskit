@@ -37,6 +37,109 @@
     * accesskit bumped from 0.16.2 to 0.16.3
     * accesskit_consumer bumped from 0.24.2 to 0.24.3
 
+## [0.20.0](https://github.com/forksnd/accesskit/compare/accesskit_macos-v0.19.0...accesskit_macos-v0.20.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296))
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179))
+
+### Features
+
+* Add `author_id` property ([#424](https://github.com/forksnd/accesskit/issues/424)) ([0d1c56f](https://github.com/forksnd/accesskit/commit/0d1c56f0bdde58715e1c69f6015df600cb7cb8c1))
+* Add role for terminals ([#282](https://github.com/forksnd/accesskit/issues/282)) ([ddbef37](https://github.com/forksnd/accesskit/commit/ddbef37158b57f56217317b480e40d58f83a9c24))
+* Add window-based constructor to macOS subclassing adapter ([#253](https://github.com/forksnd/accesskit/issues/253)) ([022ef04](https://github.com/forksnd/accesskit/commit/022ef045b9f28262b738ee1ca29a4c7303061fb3))
+* Expose the `is_required` property ([#497](https://github.com/forksnd/accesskit/issues/497)) ([46ed99b](https://github.com/forksnd/accesskit/commit/46ed99bb958ddb32cbf1bee2fcfb7b328bcbe0ab))
+* Expose the `orientation` property ([#421](https://github.com/forksnd/accesskit/issues/421)) ([590aada](https://github.com/forksnd/accesskit/commit/590aada070dc812f9b8f171fb9e43ac984fad2a1))
+* Expose the `placeholder` property ([#417](https://github.com/forksnd/accesskit/issues/417)) ([8f4a0a1](https://github.com/forksnd/accesskit/commit/8f4a0a1c10f83fcc8580a37d8013fec2d110865b))
+* Implement the `description` property ([#382](https://github.com/forksnd/accesskit/issues/382)) ([d49f406](https://github.com/forksnd/accesskit/commit/d49f40660b5dc23ed074cd72a91e511b130756ae))
+* Live regions on macOS ([#196](https://github.com/forksnd/accesskit/issues/196)) ([47d8d9f](https://github.com/forksnd/accesskit/commit/47d8d9f6a567dfe909aa4065886cace07084efb7))
+* Make the core crate no-std ([#468](https://github.com/forksnd/accesskit/issues/468)) ([2fa0d3f](https://github.com/forksnd/accesskit/commit/2fa0d3f5b2b7ac11ef1751c133706f29e548bd6d))
+* Support custom role descriptions ([#316](https://github.com/forksnd/accesskit/issues/316)) ([c8d1a56](https://github.com/forksnd/accesskit/commit/c8d1a5638fa6c33adfa059815c04f7e043c56026))
+* Text support on macOS ([#191](https://github.com/forksnd/accesskit/issues/191)) ([3a35dbe](https://github.com/forksnd/accesskit/commit/3a35dbe02122c789fe682995c5b7e022aef5cc36))
+* Workaround for libraries that put the macOS keyboard focus on the window rather than the content view ([#266](https://github.com/forksnd/accesskit/issues/266)) ([c2db1b0](https://github.com/forksnd/accesskit/commit/c2db1b0424e905d87691f8148f28b77405f29926))
+
+
+### Bug Fixes
+
+* Add list box support to the platform adapters ([6c622cf](https://github.com/forksnd/accesskit/commit/6c622cff4c0c989d9a5f16b775adff9cdacf534c))
+* Add properties needed by the Xcode Accessibility Inspector ([#466](https://github.com/forksnd/accesskit/issues/466)) ([295b188](https://github.com/forksnd/accesskit/commit/295b1881936dd097d82a10317ff14d1369f7e4bd))
+* Add sub roles to MacOS adapter ([#480](https://github.com/forksnd/accesskit/issues/480)) ([40ad828](https://github.com/forksnd/accesskit/commit/40ad828a8f95c94f3079310d95c94ab7b16e0887))
+* Bump objc2 to 0.5.0; bring icrate 0.1.0 ([#323](https://github.com/forksnd/accesskit/issues/323)) ([23b3f2f](https://github.com/forksnd/accesskit/commit/23b3f2f93b9452c80374d1da3e9abeaec60ba9bf))
+* Correctly apply the DPI scale factor to coordinates ([#185](https://github.com/forksnd/accesskit/issues/185)) ([d263938](https://github.com/forksnd/accesskit/commit/d263938d68bb63567853a340d3466ff27e076d87))
+* Derive `Debug` for adapters ([#513](https://github.com/forksnd/accesskit/issues/513)) ([753d904](https://github.com/forksnd/accesskit/commit/753d90473cf57682568c7a17c82474c8e5d00b25))
+* Don't expose the window title in our root element on macOS ([#187](https://github.com/forksnd/accesskit/issues/187)) ([9739b74](https://github.com/forksnd/accesskit/commit/9739b7424328da45c1c43b6db49af142a8789aa5))
+* Expose static text as the value rather than the title on macOS ([#186](https://github.com/forksnd/accesskit/issues/186)) ([e3720c8](https://github.com/forksnd/accesskit/commit/e3720c8e2d7c5e8c8601c52ad620dcfcacebc570))
+* Expose which accessibility selectors are actually allowed for a particular node ([#181](https://github.com/forksnd/accesskit/issues/181)) ([c4cbb23](https://github.com/forksnd/accesskit/commit/c4cbb23156749d513df4e520dcb9be0a74c697d3))
+* Fix macOS leaks ([e8537fc](https://github.com/forksnd/accesskit/commit/e8537fcbdf4a68f39c9bc51cf9fe6960903e26f2))
+* Fix new compiler warning in Rust 1.77 ([#376](https://github.com/forksnd/accesskit/issues/376)) ([1de7c63](https://github.com/forksnd/accesskit/commit/1de7c63e7db12bc7eda57a191e913fef0e572f43))
+* Fix platform adapters to support copy-on-write tree snapshots again ([#411](https://github.com/forksnd/accesskit/issues/411)) ([d3a130a](https://github.com/forksnd/accesskit/commit/d3a130a5ec8ae1d9edf0bf85a44f35f0e365242c))
+* Fix problems related to the root node ([#231](https://github.com/forksnd/accesskit/issues/231)) ([7228494](https://github.com/forksnd/accesskit/commit/7228494361c4f131af6a7fc2af8a98406cd9a63e))
+* Force a semver-breaking version bump in downstream crates ([#234](https://github.com/forksnd/accesskit/issues/234)) ([773389b](https://github.com/forksnd/accesskit/commit/773389bff857fa18edf15de426e029251fc34591))
+* Handle views with flipped coordinates ([#174](https://github.com/forksnd/accesskit/issues/174)) ([d14484c](https://github.com/forksnd/accesskit/commit/d14484cdcfdd99a497354aa3e012a0e130cc3d64))
+* Implement the `isAccessibilityEnabled` property on MacOS ([#474](https://github.com/forksnd/accesskit/issues/474)) ([61e4817](https://github.com/forksnd/accesskit/commit/61e48174ed1dd57b7dd919ecaef908f157357ec0))
+* Increase minimum supported Rust version to `1.70` ([#396](https://github.com/forksnd/accesskit/issues/396)) ([a8398b8](https://github.com/forksnd/accesskit/commit/a8398b847aa003de91042ac45e33126fc2cae053))
+* Make VoiceOver move through nodes in logical order ([#176](https://github.com/forksnd/accesskit/issues/176)) ([f060be4](https://github.com/forksnd/accesskit/commit/f060be409945296ed100cd63ecb3d2bb6bbad89e))
+* More reliable handling of the edge case for wrapped lines ([#192](https://github.com/forksnd/accesskit/issues/192)) ([c626d2c](https://github.com/forksnd/accesskit/commit/c626d2c3028085b076ada7dd31242cf3ca3c0f08))
+* Optimize use of hash tables in platform adapters ([#485](https://github.com/forksnd/accesskit/issues/485)) ([f4f0bfb](https://github.com/forksnd/accesskit/commit/f4f0bfbf21b8e22e80ab07deb432f9e7e16469ab))
+* Pin objc2 dependency to 0.3.0-beta.3 ([#201](https://github.com/forksnd/accesskit/issues/201)) ([0adfed1](https://github.com/forksnd/accesskit/commit/0adfed1192ee255fba34ad82e8483ab9296ac2df))
+* Re-export types from objc2 ([#172](https://github.com/forksnd/accesskit/issues/172)) ([1ac67ad](https://github.com/forksnd/accesskit/commit/1ac67ad17587d79b5338cb71e2bc07612fc10c44))
+* Remove unnecessary explicit lifetimes ([#488](https://github.com/forksnd/accesskit/issues/488)) ([d2bcd6d](https://github.com/forksnd/accesskit/commit/d2bcd6d3048d23df4e132bee6171eb247b2dc2c8))
+* Set proper target to build accesskit_macos documentation ([#226](https://github.com/forksnd/accesskit/issues/226)) ([9cd6bb1](https://github.com/forksnd/accesskit/commit/9cd6bb14d60bf85027b330a51afe912c37723902))
+* Support text fields without a value property ([#274](https://github.com/forksnd/accesskit/issues/274)) ([5ae557b](https://github.com/forksnd/accesskit/commit/5ae557b40d395b4a9966a90a2d80e7d97ad50bf9))
+* Update minimum supported Rust version to 1.75 ([#457](https://github.com/forksnd/accesskit/issues/457)) ([fc622fe](https://github.com/forksnd/accesskit/commit/fc622fe7657c80a4eedad6f6cded11d2538b54d5))
+* Use common filters across platform adapters ([#287](https://github.com/forksnd/accesskit/issues/287)) ([09c1204](https://github.com/forksnd/accesskit/commit/09c12045ff4ccdb22f0cf643077a27465013572d))
+* Use new objc2 crates ([#384](https://github.com/forksnd/accesskit/issues/384)) ([b3484c0](https://github.com/forksnd/accesskit/commit/b3484c0fb1fef3ecd41ff9592978336c20b8b4f8))
+
+
+### Code Refactoring
+
+* Clean up roles and properties ([#289](https://github.com/forksnd/accesskit/issues/289)) ([4fc9c55](https://github.com/forksnd/accesskit/commit/4fc9c55c91812472593923d93ff89d75ff305ee4))
+* Clean up table roles and properties ([#393](https://github.com/forksnd/accesskit/issues/393)) ([e34dad9](https://github.com/forksnd/accesskit/commit/e34dad94448a5321ece9def3f2e054aa5f62dd79))
+* Decouple in-tree focus from host window/view focus ([#278](https://github.com/forksnd/accesskit/issues/278)) ([d360d20](https://github.com/forksnd/accesskit/commit/d360d20cf951e7643b81a5303006c9f7daa5bd56))
+* Drop `DefaultActionVerb` ([#472](https://github.com/forksnd/accesskit/issues/472)) ([ef3b003](https://github.com/forksnd/accesskit/commit/ef3b0038224459094f650368412650bc3b69526b))
+* Drop `NodeClassSet` ([#389](https://github.com/forksnd/accesskit/issues/389)) ([1b153ed](https://github.com/forksnd/accesskit/commit/1b153ed51f8421cdba2dc98beca2e8f5f8c781bc))
+* Drop `Tree::app_name` ([#492](https://github.com/forksnd/accesskit/issues/492)) ([089794c](https://github.com/forksnd/accesskit/commit/089794c8f74957e91a19ae3df508e2a892f39ebc))
+* Make `ActionHandler::do_action` take `&mut self` ([#296](https://github.com/forksnd/accesskit/issues/296)) ([4fc7846](https://github.com/forksnd/accesskit/commit/4fc7846d732d61fb45c023060ebab96801a0053e))
+* Make `Node` opaque and optimize it for size ([#205](https://github.com/forksnd/accesskit/issues/205)) ([4811152](https://github.com/forksnd/accesskit/commit/48111521439b76c1a8687418a4b20f9b705eac6d))
+* Move lazy initialization from the core platform adapter to the caller ([#179](https://github.com/forksnd/accesskit/issues/179)) ([f35c941](https://github.com/forksnd/accesskit/commit/f35c941f395f3162db376a69cfaaaf770d376267))
+* Move thread synchronization into platform adapters; drop parking_lot ([#212](https://github.com/forksnd/accesskit/issues/212)) ([5df52e5](https://github.com/forksnd/accesskit/commit/5df52e5545faddf6a51905409013c2f5be23981e))
+* New approach to lazy initialization ([#375](https://github.com/forksnd/accesskit/issues/375)) ([9baebdc](https://github.com/forksnd/accesskit/commit/9baebdceed7300389b6768815d7ae48f1ce401e4))
+* Optimize simple string getters ([#493](https://github.com/forksnd/accesskit/issues/493)) ([484fd7c](https://github.com/forksnd/accesskit/commit/484fd7cbfb778222369d3f57d31dd998f6fa80d8))
+* Rename `Checked` to `Toggled`; drop `ToggleButton` role ([#388](https://github.com/forksnd/accesskit/issues/388)) ([6bc040b](https://github.com/forksnd/accesskit/commit/6bc040b7cf75cdbd6a019cc380d8dbce804b3c81))
+* Rename `name` to `label` and use `value` for label content ([#475](https://github.com/forksnd/accesskit/issues/475)) ([e0053a5](https://github.com/forksnd/accesskit/commit/e0053a5399929e8e0d4f07aa18de604ed8766ace))
+* Rename `NodeBuilder` to `Node` and the old `Node` to `FrozenNode` ([#476](https://github.com/forksnd/accesskit/issues/476)) ([7d8910e](https://github.com/forksnd/accesskit/commit/7d8910e35f7bc0543724cc124941a3bd0304bcc0))
+* Rename `Role::InlineTextBox` to `TextRun` ([#473](https://github.com/forksnd/accesskit/issues/473)) ([29fa341](https://github.com/forksnd/accesskit/commit/29fa34125a811bd3a0f9da579a9f35c9da90bf29))
+* Rename the `StaticText` role to `Label` ([#434](https://github.com/forksnd/accesskit/issues/434)) ([7086bc0](https://github.com/forksnd/accesskit/commit/7086bc0fad446d3ed4a0fd5eff641a1e75f6c599))
+* Switch to simple unsigned 64-bit integer for node IDs ([#276](https://github.com/forksnd/accesskit/issues/276)) ([3eadd48](https://github.com/forksnd/accesskit/commit/3eadd48ec47854faa94a94ebf910ec08f514642f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * accesskit bumped from 0.18.0 to 0.8.1
+    * accesskit_consumer bumped from 0.27.0 to 0.28.0
+
 ## [0.19.0](https://github.com/AccessKit/accesskit/compare/accesskit_macos-v0.18.1...accesskit_macos-v0.19.0) (2025-03-06)
 
 
