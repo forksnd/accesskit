@@ -3,8 +3,10 @@
 // the LICENSE-APACHE file) or the MIT license (found in
 // the LICENSE-MIT file), at your option.
 
-use accesskit::{Point, Rect};
+use accesskit::{Color, Point, Rect};
 use accesskit_consumer::{Node, TextPosition, TextRange};
+use objc2::encode::{Encoding, RefEncode};
+use objc2::{msg_send, rc::Id, runtime::AnyObject};
 use objc2_app_kit::*;
 use objc2_foundation::{NSPoint, NSRange, NSRect, NSSize};
 
@@ -76,4 +78,31 @@ pub(crate) fn to_ns_rect(view: &NSView, rect: Rect) -> NSRect {
     let rect = view.convertRect_toView(rect, None);
     let window = view.window().unwrap();
     window.convertRectToScreen(rect)
+}
+
+fn color_channel_to_f64(channel: u8) -> f64 {
+    (channel as f64) / 255.0
+}
+
+// TODO: can be removed after updating objc2 to 0.6 which has proper `CGColor` support
+#[repr(C)]
+struct CGColor {
+    _private: [u8; 0],
+}
+
+unsafe impl RefEncode for CGColor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGColor", &[]));
+}
+
+pub(crate) fn to_color_attribute(color: Color) -> Id<AnyObject> {
+    let ns_color = unsafe {
+        NSColor::colorWithSRGBRed_green_blue_alpha(
+            color_channel_to_f64(color.red),
+            color_channel_to_f64(color.green),
+            color_channel_to_f64(color.blue),
+            color_channel_to_f64(color.alpha),
+        )
+    };
+    let cg_color: *const CGColor = unsafe { msg_send![&ns_color, CGColor] };
+    unsafe { Id::retain(cg_color as *mut AnyObject).unwrap() }
 }
